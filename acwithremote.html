@@ -1,0 +1,197 @@
+<html>
+	<head>
+		<link href="../../../BOOTSTRAP/assets/css/bootstrap.css" rel="stylesheet">
+		<style>
+			.imgcontainer{margin:10px 20%;position:relative;}
+			.temperature {position:absolute;height:30px;width:35px;top:63%;left:76%;color:black;font-size:25px;font-weight:bold;color:#0cf0f2;display:none;}
+			.aclight {border-radius:50%;width:7px;height:7px;position:absolute;top:66%;left:83.5%;color:#0cf0f2;display:none;}
+			.aclightswingh {border-radius:50%;width:7px;height:7px;position:absolute;top:66%;left:88%;color:#0cf0f2;display:none;}
+			.aclightswmid {border-radius:50%;width:70px;height:7px;position:absolute;top:66.9%;left:90.5%;color:#0cf0f2;font-size:20px;display:none;}
+			.aclightswleft {border-radius:50%;width:70px;height:10px;position:absolute;top:64%;left:89.5%;color:#0cf0f2;font-size:20px;}
+			.aclightswright {border-radius:50%;width:70px;height:10px;position:absolute;top:64%;left:91.5%;color:#0cf0f2;font-size:20px;}
+			.fanspeed {width:70px;height:10px;position:absolute;top:62%;left:88.2%;color:#0cf0f2;font-size:10px;display:none;}
+			.power {width:70px;height:10px;position:absolute;top:62%;left:83%;color:#0cf0f2;font-size:10px;display:none;}
+			.remotecontrol {width:200px;height:300px;border:1px solid gray;border-radius:10px;position:absolute;top:380;left:650;}
+			.powerbtn {text-align:left;padding:20;}
+			button{border-radius:5px;border:none;background:none;}
+			.leftbtn{margin-left:12px;width:83px;height:100px;float:left;position:relative;border:2px solid #ccc;border-radius:10px;}
+			.rightbtn{margin-left:8px;width:83px;height:100px;float:left;position:relative;border:2px solid #ccc;border-radius:10px;}
+			sup {font-size:10px;}
+		</style>
+		<title>AC WITH REMOTE</title>
+		<script>
+		var counter=0;
+		var temp=17;
+		var fan=0;
+		function fpowerbtn()
+		{	
+			counter++;
+			if (counter%2==0)
+			{
+				document.getElementById("temp").style.display="none";
+				document.getElementById("aclight").style.display="none";
+				//document.getElementById("aclightswingh").style.color="black";
+				document.getElementById("aclightswmid").style.display="none";
+				document.getElementById("fanspeed").style.display="none";
+				document.getElementById("power").style.display="none";
+				document.getElementById("acimagesrc").src="ac4.png";
+				document.getElementById("aclightswleft").innerHTML="<span></span>";
+				document.getElementById("aclightswleft").style.left="89.5%";
+				document.getElementById("aclightswright").innerHTML="<span></span>";
+				var sound=document.getElementById("audiowav");
+				sound.play();
+				
+			}
+			else
+			{
+				document.getElementById("temp").style.display="block";
+				document.getElementById("aclight").style.display="block";
+				//document.getElementById("aclightswingh").style.color="#0cf0f2";
+				document.getElementById("aclightswmid").style.display="block";
+				document.getElementById("fanspeed").style.display="block";
+				document.getElementById("power").style.display="block";
+				document.getElementById("acimagesrc").src="ac3.png";
+				var sound=document.getElementById("audiowav");
+				sound.play();
+			}
+		}
+		function tempup()
+		{
+			if(counter%2==0)
+			{
+				alert("Kindly Switch on the power First!");
+			}
+			else
+			{
+				temp++;
+				var a=document.getElementById("temp").innerHTML=temp+"<sup>0</sup>C";
+				var sound=document.getElementById("audiowav");
+				sound.play();
+			}
+		}
+		function tempdown()
+		{
+			if(counter%2==0)
+			{
+				alert("Kindly Switch on the power First!");
+			}
+			else
+			{	
+				temp--;
+				var a=document.getElementById("temp").innerHTML=temp+"<sup>0</sup>C";
+				var sound=document.getElementById("audiowav");
+				sound.play();
+			}
+		}
+		function fanup()
+		{	fan++;
+			if(fan==1)
+			{
+				document.getElementById("aclightswleft").innerHTML="<span>&laquo;</span>";
+				document.getElementById("aclightswleft").style.left="89.5%";
+				document.getElementById("aclightswright").innerHTML="<span>&raquo;</span>";
+				var sound=document.getElementById("audiowav");
+				sound.play();
+			}
+			else if(fan==2)
+			{
+				document.getElementById("aclightswleft").innerHTML="<span>&laquo;&laquo;</span>";
+				document.getElementById("aclightswleft").style.left="88.2%";
+				document.getElementById("aclightswright").innerHTML="<span>&raquo;&raquo;</span>";
+				var sound=document.getElementById("audiowav");
+				sound.play();
+			}
+			else if(fan==3)
+			{
+				document.getElementById("aclightswleft").innerHTML="<span>&laquo;&laquo;&laquo;</span>";
+				document.getElementById("aclightswleft").style.left="87%";
+				document.getElementById("aclightswright").innerHTML="<span>&raquo;&raquo;&raquo;</span>";
+				var sound=document.getElementById("audiowav");
+				sound.play();
+			}
+			else
+			{
+				var sound=document.getElementById("audiowav");
+				sound.play();	
+			}
+		}
+		function fandown()
+		{	
+			fan--;
+			if(fan==2)
+			{
+				document.getElementById("aclightswleft").innerHTML="<span>&laquo;&laquo;</span>";
+				document.getElementById("aclightswleft").style.left="88.2%";
+				document.getElementById("aclightswright").innerHTML="<span>&raquo;&raquo;</span>";
+				var sound=document.getElementById("audiowav");
+				sound.play();
+			}
+			else if(fan==1)
+			{
+				document.getElementById("aclightswleft").innerHTML="<span>&laquo;</span>";
+				document.getElementById("aclightswleft").style.left="89.5%";
+				document.getElementById("aclightswright").innerHTML="<span>&raquo;</span>";
+				var sound=document.getElementById("audiowav");
+				sound.play();
+			}
+			else if(fan==0)
+			{
+				document.getElementById("aclightswleft").innerHTML="<span></span>";
+				document.getElementById("aclightswleft").style.left="89.5%";
+				document.getElementById("aclightswright").innerHTML="<span></span>";
+				var sound=document.getElementById("audiowav");
+				sound.play();
+			}
+			else
+			{
+				var sound=document.getElementById("audiowav");
+				sound.play();	
+			}
+		}
+		
+		</script>
+	</head>
+	<body>
+	 <audio id="audiowav" src="beep.wav" autostart="false" ></audio>
+		<h3 align="center">AC WITH REMOTE</h3>
+		
+		<div class="imgcontainer" id="imgcontain">
+			<img src="ac4.png" width="100%" id="acimagesrc">
+			<div class="temperature" id="temp">17<sup style="font-size:10px;">0</sup>C</div>
+			<div class="aclight" id="aclight"><span class="glyphicon glyphicon-asterisk"></span></div>
+			<!--<div class="aclightswingh" id="aclightswingh"><span class="glyphicon glyphicon-asterisk"></span></div>-->
+			<div class="aclightswmid" id="aclightswmid"><span style="font-size:10px;"class="glyphicon glyphicon-record"></span></div>
+			<div class="aclightswleft" id="aclightswleft"></div>
+			<div class="aclightswright" id="aclightswright"></div>
+			<div class="power" id="power">Power</div>
+			<div class="fanspeed" id="fanspeed">Fan Speed</div>
+		</div>
+		<div align="center" class="remotecontrol" id="remote">
+			<h5 align="center" style="color:#ccc;">Remote</h5>
+			<span style="position:absolute;left:15;font-size:12px;">On/Off</span>
+			<div class="powerbtn"><button type="button" onclick="fpowerbtn()"><span class="glyphicon glyphicon-off"></span></button></div>
+			<div class="leftbtn">
+				<div style="position:absolute;top:10px;left:25px;">
+					<button onclick="fanup()"><span class="glyphicon glyphicon-plus"></span></button>
+				</div>
+				<div style="margin-top:50%;">Fan Speed</div>
+				<div style="position:absolute;bottom:10px;left:25px;">
+					<button onclick="fandown()"><span class="glyphicon glyphicon-minus"></span></button>
+				</div>
+			</div>
+			<div class="rightbtn">
+				<div style="position:absolute;top:10px;left:25px;">
+					<button type="button" onclick="tempup()"><span class="glyphicon glyphicon-plus"></span></button>
+				</div>
+				<div style="margin-top:50%;">Temperature</div>
+				<div style="position:absolute;bottom:10px;left:25px;">
+					<button type="button" onclick="tempdown()"><span class="glyphicon glyphicon-minus"></span></button>
+				</div>
+			</div>
+			<div style="margin-top:90%;font-weight:bold;font-size:20px;color:#a59a9a;"><span class="glyphicon glyphicon-triangle-right"></span><i>SANSUI</i></div>
+		</div>
+		<br>
+		<br>
+		<br>
+	</body>
+</html>
